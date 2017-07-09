@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mListView.setAdapter(mAdapter);
 
         initiationConnection();
+        searchButtonClick();
     }
 
     private void initiationConnection() {
@@ -71,7 +71,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 if (networkInfo != null && networkInfo.isConnected()) {
                     getLoaderManager().restartLoader(DATA_LOADER_ID, null, MainActivity.this);
                 } else {
-
+                    mAdapter.clear();
+                    View progressBar = findViewById(R.id.loading_bar);
+                    progressBar.setVisibility(View.GONE);
+                    mEmptyMessageTextView.setText(R.string.no_internet_connection);
                 }
             }
         });
