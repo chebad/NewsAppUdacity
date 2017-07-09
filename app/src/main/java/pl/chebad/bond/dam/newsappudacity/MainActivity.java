@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private ListView mListView;
     private TextView mEmptyMessageTextView;
 
+    private DataAdapter mAdapter;
 
     private NetworkInfo networkInfo;
     private ConnectivityManager connectManager;
@@ -42,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mListView.setEmptyView(mEmptyMessageTextView);
 
-        ListAdapter adapter = new DataAdapter(this, new ArrayList<Data>());
-        mListView.setAdapter(adapter);
+        mAdapter = new DataAdapter(this, new ArrayList<Data>());
+        mListView.setAdapter(mAdapter);
 
         initiationConnection();
     }
@@ -61,8 +62,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
+    private void searchButtonClick() {
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                connectManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                networkInfo = connectManager.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    getLoaderManager().restartLoader(DATA_LOADER_ID, null, MainActivity.this);
+                } else {
 
-
+                }
+            }
+        });
+    }
 
     @Override
     public Loader<ArrayList<Data>> onCreateLoader(int id, Bundle args) {
