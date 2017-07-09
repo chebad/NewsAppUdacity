@@ -10,10 +10,10 @@ import java.util.List;
  *
  */
 
-public class DataLoader extends AsyncTaskLoader<List<Data>> {
+class DataLoader extends AsyncTaskLoader<List<Data>> {
     private String query;
 
-    public DataLoader(Context context, String query) {
+    DataLoader(Context context, String query) {
         super(context);
         this.query = query;
     }
