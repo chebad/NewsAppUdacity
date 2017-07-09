@@ -3,11 +3,11 @@ package pl.chebad.bond.dam.newsappudacity;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Damian Bondaruk on 2017-07-09.
+ *
  */
 
 public class DataLoader extends AsyncTaskLoader<List<Data>> {
@@ -24,8 +24,7 @@ public class DataLoader extends AsyncTaskLoader<List<Data>> {
             return null;
         }
 
-        ArrayList<Data> newsList = DataUtils.fetchData(query);
-        return newsList;
+        return DataUtils.fetchData(query);
     }
 
     @Override
