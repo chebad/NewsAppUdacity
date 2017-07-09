@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private DataAdapter mAdapter;
 
-    private NetworkInfo networkInfo;
-    private ConnectivityManager connectManager;
-    private LoaderManager loaderManager;
+    NetworkInfo networkInfo;
+    ConnectivityManager connectManager;
+    LoaderManager loaderManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

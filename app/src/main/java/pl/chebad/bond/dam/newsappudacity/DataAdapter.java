@@ -30,6 +30,7 @@ public class DataAdapter extends ArrayAdapter<Data> {
             view = LayoutInflater.from(getContext()).inflate(
                     R.layout.single_news,parent,false
             );
+            holder = new ViewHolder();
             holder.articleTittle = (TextView) view.findViewById(R.id.article_tittle_view);
             holder.sectionTittle = (TextView) view.findViewById(R.id.section_tittle_view);
             view.setTag(holder);

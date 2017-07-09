@@ -33,7 +33,7 @@ final class DataUtils {
     private static final String JSON_RESULTS = "results";
     private static final String SECTION_TITTLE = "sectionName";
     private static final String NOT_FOUND = "Nothing here.";
-    private static final String ARTICLE_TITTLE = "webTittle";
+    private static final String ARTICLE_TITTLE = "webTitle";
     private static final String URL_SITE = "webUrl";
 
     static ArrayList<Data> fetchData(String query) {
