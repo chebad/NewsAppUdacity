@@ -1,11 +1,13 @@
 package pl.chebad.bond.dam.newsappudacity;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -43,7 +45,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ListAdapter adapter = new DataAdapter(this, new ArrayList<Data>());
         mListView.setAdapter(adapter);
 
+        initiationConnection();
     }
+
+    private void initiationConnection() {
+        connectManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        networkInfo = connectManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            loaderManager = getLoaderManager();
+            loaderManager.initLoader(DATA_LOADER_ID, null, this);
+        } else {
+            View progressBar = findViewById(R.id.loading_bar);
+            progressBar.setVisibility(View.GONE);
+            mEmptyMessageTextView.setText(R.string.no_internet_connection);
+        }
+    }
+
+
 
 
     @Override
